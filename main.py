@@ -12,7 +12,8 @@ tajenka = len(slovo) * ["_"]
 print(slovo)
 oznameni= ''
 stav=''
-# 1. Smyčka pro celou hru, hlídání životů
+
+#Smyčka pro celou hru, hlídání životů
 while hra_bezi and zivoty > 0:
     os.system('cls')
     print(f"Tajenka je: {''.join(tajenka)}")
@@ -20,20 +21,21 @@ while hra_bezi and zivoty > 0:
     print(oznameni)
 
 
-# 2. Hádání slova/písmena - input()
+
     hadej = input("Hádej jednotlivá písmena, či zadej celé slovo: ")
 
-# 3. Vyhodnocení výsledku hry
+
 
     #pokud je slovo správně
     if hadej == slovo:
         print("Uhádl jsi celé slovo!")
         hra_bezi = False
 
-
+    #pokud zadáš písmeno, které si již zadal a je součástí tajenky
     elif hadej in kontrol and hadej in slovo:
         oznameni = 'Písmeno je již obsaženo!'
 
+    #pokud zadáš písmeno, které si již zadal a není součástí tajenky
     elif hadej in kontrol and hadej not in slovo:
         oznameni = 'Pismeno neni a znovu si jej zadal'
         zivoty -= 1
@@ -50,25 +52,19 @@ while hra_bezi and zivoty > 0:
             hra_bezi = False
 
 
-
+    #pokud si zadal špatné písmeno
     else:
         kontrol.append(hadej)
         zivoty -= 1
         print("Chyba")
 
 else:
-
+    #pokud si uhodl správné slovo, cyklus je ukončen a přesměrován na tuhle podmínku
     if hra_bezi == False:
         print(f"Tajenka: '{slovo}', gratuluji k uhodnutí slova!")
 
+    # pokud vyčerpáš všechny pokusy
     if zivoty == 0:
-
         print("Vyčerpal jsi pokusy. Konec hry.")
         print(obesenec.get(7))
         exit()
-
-
-
-# TODO: Úklid výpisu v konzoli - os.system("cls")
-
-# TODO: Vykreslení figurky
